@@ -18,6 +18,12 @@ group = 'com.prototype'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
+
+jar {
+	baseName = 'server-prototype'
+	version =  '0.1.0'
+}
+
 repositories {
 	mavenCentral()
 }
@@ -25,6 +31,5 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-amqp')
-	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
