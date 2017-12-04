@@ -33,7 +33,7 @@ public class ServerPrototypeApplication {
 
 	@Bean
 	SimpleMessageListenerContainer container(ConnectionFactory connectionFactory,
-											 Receiver listenerAdapter) {
+											 MessageListenerAdapter listenerAdapter) {
 		SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
 		container.setConnectionFactory(connectionFactory);
 		container.setQueueNames(queueName);
