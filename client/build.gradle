@@ -1,0 +1,38 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.9.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+
+group 'com.prototype'
+version '1.0-SNAPSHOT'
+
+jar {
+    baseName = 'client-prototype'
+    version =  '0.1.0'
+    manifest {
+        attributes 'Main-Class': 'com.prototype.client.Main'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.0.0'
+    compile group: 'org.slf4j', name: 'slf4j-nop', version: '1.7.25'
+    compile files('/home/adam/IdeaProjects/server-prototype/client/libs/server-prototype-0.1.0.jar')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
