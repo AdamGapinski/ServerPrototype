@@ -14,7 +14,8 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ServerPrototypeApplication {
 
-	final static String queueName = "server-queue";
+	private final static String queueName = "server-queue";
+	private final static String exchangeName = "exchange";
 
 	@Bean
 	Queue queue() {
@@ -23,7 +24,7 @@ public class ServerPrototypeApplication {
 
 	@Bean
 	TopicExchange exchange() {
-		return new TopicExchange("amq.topic");
+		return new TopicExchange(exchangeName);
 	}
 
 	@Bean
@@ -51,4 +52,11 @@ public class ServerPrototypeApplication {
 		SpringApplication.run(ServerPrototypeApplication.class, args);
 	}
 
+    public static String getQueueName() {
+        return queueName;
+    }
+
+    public static String getExchangeName() {
+        return exchangeName;
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServerBroadcaster implements CommandLineRunner {
 
+    private String exchangeName = ServerPrototypeApplication.getExchangeName();
     private RabbitTemplate rabbitTemplate;
 
     public ServerBroadcaster(RabbitTemplate rabbitTemplate) {
@@ -20,13 +21,12 @@ public class ServerBroadcaster implements CommandLineRunner {
 
             String message;
             while (true) {
-                message = "Message from server number " + messageCounter;
-                System.out.println("Sending: " + message);
-                rabbitTemplate.convertAndSend("amq.topic", "broadcast", message);
+                message = "server message " + messageCounter;
+                rabbitTemplate.convertAndSend(exchangeName, "broadcast", message);
                 messageCounter++;
 
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
